@@ -1004,7 +1004,7 @@ class UKF:
             dimension.
         """
         try:
-            sqrt_covariance = np.linalg.cholesky((self.state_dimension + self.lambda_param) * state_covariance)
+            sqrt_covariance = np.linalg.cholesky((self.state_dimension + self.lambda_param) * abs(state_covariance))
         except np.linalg.LinAlgError:
             # Add small regularization if Cholesky decomposition fails
             regularized_covariance = state_covariance + np.eye(self.state_dimension) * 1e-8
